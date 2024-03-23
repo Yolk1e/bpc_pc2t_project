@@ -32,6 +32,6 @@ public class Novel extends Book
 	//Přidání žánru k výpisu knihy
 	@Override
     public String toString() {
-        return super.toString() + ", Genre: " + Genre;
+        return super.toString() + ", Zanr: " + Genre;
     }
 }

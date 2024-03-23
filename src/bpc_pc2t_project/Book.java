@@ -63,7 +63,7 @@ public abstract class Book
 	//Výpis knihy s přehozením boolean na výpis dostupnosti
 	@Override
     public String toString() {
-		String Status = Availability ? "Available" : "Not available";
-        return Title + " by " + String.join(", ", Author) + " (" + ReleaseYear + "), Availability: " + Status;
+		String Status = Availability ? "K dispozici" : "Vypujceno";
+        return Title + " od " + String.join(", ", Author) + " (" + ReleaseYear + "), Dostupnost: " + Status;
     }
 }
