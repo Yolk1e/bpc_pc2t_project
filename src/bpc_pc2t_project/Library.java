@@ -25,9 +25,9 @@ public class Library
 	
 	public static void main(String[] args) {
 		
-		/*Book book = new Novel("Harry Potter and the Philosopher's Stone", List.of("J. K. Rowling"), 1997, true, Novel.Genres.Fantasy);
+		//Book book = new Novel("Harry Potter and the Philosopher's Stone", List.of("J. K. Rowling"), 1997, true, Novel.Genres.Detektivní);
 	
-		System.out.println(book);*/
+		//System.out.println(book);
 	
 	
 	
@@ -42,27 +42,81 @@ public class Library
 		while (run) 
 		{
 			System.out.println("╔═══════════════════════════════════════════════╗");
-			System.out.println("║  Vyberte pozadovanou cinnost:                 ║");
-			System.out.println("║  1 .. Pridani nove knihy                      ║");
-			System.out.println("║  2 .. Uprava stavajici knihy                  ║");
-			System.out.println("║  3 .. Smazani pozadovane knihy                ║");
-			System.out.println("║  4 .. Nastaveni dostupnosti knihy             ║");
-			System.out.println("║  5 .. Seznam vsech knih                       ║");
-			System.out.println("║  6 .. Vyhledani knihy v seznamu               ║");
-			System.out.println("║  7 .. Vypis vsech knih daneho autora          ║");
-			System.out.println("║  8 .. Vypis vsech knih daneho zanru           ║");
-			System.out.println("║  9 .. Seznam vypujcenych knih                 ║");
-			System.out.println("║ 10 .. Ulozeni informaci o knize do souboru    ║");
-			System.out.println("║ 11 .. Nacteni informaci o knize ze souboru    ║");
-			System.out.println("║ 12 .. Ukonceni aplikace                       ║");
+			System.out.println("║  Vyberte požadovanou činnost:                 ║");
+			System.out.println("║  1 .. Přidání nové knihy                      ║");
+			System.out.println("║  2 .. Úprava stávající knihy                  ║");
+			System.out.println("║  3 .. Smazání požadované knihy                ║");
+			System.out.println("║  4 .. Nastavení dostupnosti knihy             ║");
+			System.out.println("║  5 .. Seznam všech knih                       ║");
+			System.out.println("║  6 .. Vyhledání knihy v seznamu               ║");
+			System.out.println("║  7 .. Výpis všech knih daného autora          ║");
+			System.out.println("║  8 .. Výpis všech knih daného žánru           ║");
+			System.out.println("║  9 .. Seznam vypůjčených knih                 ║");
+			System.out.println("║ 10 .. Uložení informací o knize do souboru    ║");
+			System.out.println("║ 11 .. Načtení informací o knize ze souboru    ║");
+			System.out.println("║ 12 .. Ukončení aplikace                       ║");
 			System.out.println("╚═══════════════════════════════════════════════╝");
 			Option=NumbersN(sc);
 			
 			switch(Option) 
 			{
 				case 1:
+					System.out.println("╔═════════════════════════════════════╗");
+					System.out.println("║ Vyberte jakou knihu chcete přidat:  ║");
+					System.out.println("║  1 .. Román                         ║");
+					System.out.println("║  2 .. Učebnice                      ║");
+					System.out.println("║  0 .. Zpět do hlavního menu         ║");
+					System.out.println("╚═════════════════════════════════════╝");
+					Option=NumbersN(sc);
+					
+					switch(Option) 
+					{
+						case 1:
+							String Title;
+							List<String> Authors;
+							int Year;
+							
+														
+							System.out.println("╔════════════════════════════════════════╗");
+							System.out.println("║ Vyberte žánr vašeho románu z nabídky:  ║");
+							System.out.println("║ 1 .. Detektivní                        ║");
+							System.out.println("║ 2 .. Fantasy                           ║");
+							System.out.println("║ 3 .. Scifi                             ║");
+							System.out.println("║ 4 .. Venkovský                         ║");
+							System.out.println("║ 5 .. Hororový                          ║");
+							System.out.println("║ 0 .. Zpět do hlavního menu             ║");
+							System.out.println("╚════════════════════════════════════════╝");
+							Option=NumbersN(sc);
+							
+							switch(Option)
+							{
+								case 1:
+									System.out.println("Zadejte název Vašeho románu, autora nebo autory, rok vydání.");
+									Title=sc.next();
+									//Authors.add(sc.next());
+									Year=sc.nextInt();
+									Book book=new Novel(Title, Authors, Year, true, Novel.Genres.Detektivní);
+									System.out.println(book);
+									break;
+								case 2:
+									break;
+								case 3:
+									break;
+								case 4:
+									break;
+								case 5:
+									break;
+								case 0:
+									break;
+							}
+							break;
+						case 2:
+							break;
+						case 0:
+							break;
+					}
 					break;
-				
+					
 				case 2:
 					break;
 				
@@ -96,7 +150,9 @@ public class Library
 				case 12:
 					run=false;
 					break;
+				
 			}
+			
 		}
 	}
 

@@ -7,11 +7,11 @@ public class Novel extends Book
 	//Seznam dostupných žánrů a vytvoření "Datového typu"
 	public enum Genres
 	{
-		Romance,
+		Detektivní,
 		Fantasy,
 		Scifi,
-		Detective,
-		Horror
+		Venkovský,
+		Hororový
 	}
 	
 	private Genres Genre;
