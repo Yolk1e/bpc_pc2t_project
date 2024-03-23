@@ -1,5 +1,6 @@
 package bpc_pc2t_project;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,7 +35,7 @@ public class Library
 	
 	
 	
-	
+		List<String> Authors = new ArrayList<String>();
 		Scanner sc=new Scanner(System.in);
 		int Option;
 		boolean run=true;
@@ -73,7 +74,6 @@ public class Library
 					{
 						case 1:
 							String Title;
-							List<String> Authors;
 							int Year;
 							
 														
@@ -93,7 +93,7 @@ public class Library
 								case 1:
 									System.out.println("Zadejte název Vašeho románu, autora nebo autory, rok vydání.");
 									Title=sc.next();
-									//Authors.add(sc.next());
+									Authors.add(sc.next());
 									Year=sc.nextInt();
 									Book book=new Novel(Title, Authors, Year, true, Novel.Genres.Detektivní);
 									System.out.println(book);
