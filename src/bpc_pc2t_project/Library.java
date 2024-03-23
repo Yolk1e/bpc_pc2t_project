@@ -5,8 +5,8 @@ import java.util.List;
 public class Library {
 
 	public static void main(String[] args) {
-		Book book;
-			book=new Novel("Nazev", List.of("Autor1"), 2018, true, Novel.Genres.Fantasy);
+		
+		Book book = new Novel("Harry Potter and the Philosopher's Stone", List.of("J. K. Rowling"), 1997, true, Novel.Genres.Fantasy);
 	
 	System.out.println(book);
 	}

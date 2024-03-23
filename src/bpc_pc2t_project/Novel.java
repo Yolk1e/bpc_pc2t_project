@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Novel extends Book
 {
+	//Seznam dostupných žánrů a vytvoření "Datového typu"
 	public enum Genres
 	{
 		Romance,
@@ -28,6 +29,7 @@ public class Novel extends Book
 		this.Genre = Genre;
 	}
 	
+	//Přidání žánru k výpisu knihy
 	@Override
     public String toString() {
         return super.toString() + ", Genre: " + Genre;

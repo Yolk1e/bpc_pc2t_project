@@ -5,7 +5,7 @@ import java.util.List;
 public abstract class Book 
 {
 	private String Title;
-	
+	//Seznam autorů
 	private List<String> Author;
 	
 	private int ReleaseYear;
@@ -60,7 +60,7 @@ public abstract class Book
 	public void setAvailability(boolean availability) {
 		Availability = availability;
 	}
-	
+	//Výpis knihy s přehozením boolean na výpis dostupnosti
 	@Override
     public String toString() {
 		String Status = Availability ? "Available" : "Not available";
