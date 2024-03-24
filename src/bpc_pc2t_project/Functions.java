@@ -37,9 +37,8 @@ public class Functions
 	    System.out.println("Zadejte autora/autory románu (oddělené čárkou):");
 	    String[] AuthorsInput = sc.nextLine().split(",");
 	    List<String> Authors = new ArrayList<>();
-	    for (String Author : AuthorsInput) {
+	    for (String Author : AuthorsInput)
 	        Authors.add(Author.trim());
-	    }
 	    
 	    System.out.println("Zadejte rok vydání románu:");
 	    Year = NumbersN(sc);
@@ -55,8 +54,9 @@ public class Functions
 			System.out.println("║ 4 .. Venkovský                         ║");
 			System.out.println("║ 5 .. Hororový                          ║");
 			System.out.println("╚════════════════════════════════════════╝");
-	        int GenreOption = NumbersN(sc);
-	        switch (GenreOption) {
+	        //int GenreOption = NumbersN(sc);
+	        //switch (GenreOption) {
+			switch(NumbersN(sc)) {
 	            case 1:
 	                Genre = Novel.Genres.Detektivní;
 	                validChoice = true;
@@ -102,9 +102,8 @@ public class Functions
 	    System.out.println("Zadejte autora/autory učebnice (oddělené čárkou):");
 	    String[] AuthorsInput = sc.nextLine().split(",");
 	    List<String> Authors = new ArrayList<>();
-	    for (String Author : AuthorsInput) {
+	    for (String Author : AuthorsInput)
 	        Authors.add(Author.trim());
-	    }
 	    
 	    System.out.println("Zadejte rok vydání učebnice:");
 	    Year = NumbersN(sc);
@@ -157,9 +156,10 @@ public class Functions
 		System.out.println("║ 3 .. Stav dostupnosti                  ║");
 		System.out.println("╚════════════════════════════════════════╝");
 	
-		int Choice = sc.nextInt();
+		//int Choice = sc.nextInt();
 		
-		switch (Choice) 
+		//switch (Choice) 
+		switch (sc.nextInt()) 
 		{
 			case 1:
 				System.out.println("Zadejte jméno/jména autorů, oddělené čárkou:");
@@ -168,9 +168,8 @@ public class Functions
 				String[] AuthorsInput = sc.nextLine().split(",");
 				
 			    List<String> Authors = new ArrayList<>();
-			    for (String Author : AuthorsInput) {
+			    for (String Author : AuthorsInput)
 			        Authors.add(Author.trim());
-			    }
 			    
 			    Selected.setAuthor(Authors);
 			    System.out.println("Autor/autoři byli úspěšně změněni");
@@ -189,27 +188,20 @@ public class Functions
 				System.out.println("║ 1 .. Ano  ║");
 				System.out.println("║ 2 .. Ne   ║");
 				System.out.println("╚═══════════╝");
-				int Option = sc.nextInt();
-				if(Option == 1) 
+				//int Option = sc.nextInt();
+				//if(Option == 1)
+				if(sc.nextInt() == 1)
 				{
 					if(Selected.isAvailability() == true) 
-					{
 						Selected.setAvailability(false);
-					}
 					else if(Selected.isAvailability() == false) 
-					{
 						Selected.setAvailability(true);
-					}
 					System.out.println("Dostupnost byla úspěšně změněna.");
 				}
-				else if(Choice == 2)
-				{
+				else if(sc.nextInt() == 2)
 					System.out.println("Dostupnost nebyla změněna.");
-				}
 				else
-				{
 					System.out.println("Byla zadána neplatná volba. Vracím do hlavního menu.");
-				}
 				break;
 		}
 		
@@ -245,20 +237,17 @@ public class Functions
 		System.out.println("║ 1 .. Ano  ║");
 		System.out.println("║ 2 .. Ne   ║");
 		System.out.println("╚═══════════╝");
-		int Choice = sc.nextInt();
-		if(Choice == 1) 
+		//int Choice = sc.nextInt();
+		//if(Choice == 1)
+		if(sc.nextInt() == 1) 
 		{
 			if(Selected.isAvailability() == true) 
-			{
 				Selected.setAvailability(false);
-			}
 			else if(Selected.isAvailability() == false) 
-			{
 				Selected.setAvailability(true);
-			}
 			System.out.println("Dostupnost byla úspěšně změněna.");
 		}
-		else if(Choice == 2)
+		else if(sc.nextInt() == 2)
 		{
 			System.out.println("Dostupnost nebyla změněna.");
 			return;
