@@ -177,10 +177,11 @@ public class Library
 					break;
 					
 				case 2:
-					
+					Functions.EditBook(Knihy);
 					break;
 				
 				case 3:
+					System.out.println(Knihy);
 					break;
 				
 				case 4:
