@@ -26,7 +26,7 @@ public class Library
 	
 	public static void main(String[] args) {
 		
-		//Book book = new Novel("Harry Potter and the Philosopher's Stone", List.of("J. K. Rowling"), 1997, true, Novel.Genres.Detektivní);
+		
 	
 		//System.out.println(book);
 	
@@ -34,7 +34,7 @@ public class Library
 		List<Book> Knihy = new ArrayList<Book>();
 	
 	
-	
+		Knihy.add(new Novel("Harry Potter", List.of("J. K. Rowling"), 1997, true, Novel.Genres.Fantasy));
 		
 		Scanner sc=new Scanner(System.in);
 		int Option;
@@ -73,103 +73,10 @@ public class Library
 					switch(Option) 
 					{
 						case 1:
-						    String NTitle;
-						    int NYear;
-						    
-						    System.out.println("Zadejte název románu:");
-						    sc.nextLine();
-						    NTitle = sc.nextLine();
-						    
-						    System.out.println("Zadejte autora/autory románu (oddělené čárkou):");
-						    String[] NAuthorsInput = sc.nextLine().split(",");
-						    List<String> NAuthors = new ArrayList<>();
-						    for (String NAuthor : NAuthorsInput) {
-						        NAuthors.add(NAuthor.trim());
-						    }
-						    
-						    System.out.println("Zadejte rok vydání románu:");
-						    NYear = NumbersN(sc);
-						    
-						    Novel.Genres Genre = null;
-						    boolean validChoice = false;
-						    do {
-						    	System.out.println("╔════════════════════════════════════════╗");
-								System.out.println("║ Vyberte žánr vašeho románu z nabídky:  ║");
-								System.out.println("║ 1 .. Detektivní                        ║");
-								System.out.println("║ 2 .. Fantasy                           ║");
-								System.out.println("║ 3 .. Scifi                             ║");
-								System.out.println("║ 4 .. Venkovský                         ║");
-								System.out.println("║ 5 .. Hororový                          ║");
-								System.out.println("╚════════════════════════════════════════╝");
-						        int GenreOption = NumbersN(sc);
-						        switch (GenreOption) {
-						            case 1:
-						                Genre = Novel.Genres.Detektivní;
-						                validChoice = true;
-						                break;
-						            case 2:
-						                Genre = Novel.Genres.Fantasy;
-						                validChoice = true;
-						                break;
-						            case 3:
-						                Genre = Novel.Genres.Scifi;
-						                validChoice = true;
-						                break;
-						            case 4:
-						                Genre = Novel.Genres.Venkovský;
-						                validChoice = true;
-						                break;
-						            case 5:
-						                Genre = Novel.Genres.Hororový;
-						                validChoice = true;
-						                break;
-						            default:
-						                
-						            	System.out.println("Neplatná volba. Zadejte prosím platný žánr.");
-						        }
-						    } while (!validChoice);
-						    
-							
-			
-						    Knihy.add(new Novel(NTitle, NAuthors, NYear, true, Genre));
-						    
-						    System.out.println("Román byl úspěšně přidán do knihovny.");
-						    System.out.println(Knihy);
+							Functions.AddNovel(sc, Knihy);
 						    break;
 						case 2:
-							String TBTitle;
-						    int TBYear;
-						    
-						    System.out.println("Zadejte název učebnice:");
-						    sc.nextLine();
-						    TBTitle = sc.nextLine();
-						    
-						    System.out.println("Zadejte autora/autory učebnice (oddělené čárkou):");
-						    String[] TBAuthorsInput = sc.nextLine().split(",");
-						    List<String> TBAuthors = new ArrayList<>();
-						    for (String TBAuthor : TBAuthorsInput) {
-						        TBAuthors.add(TBAuthor.trim());
-						    }
-						    
-						    System.out.println("Zadejte rok vydání učebnice:");
-						    TBYear = NumbersN(sc);
-						    
-						    System.out.println("Zadejte ročník učebnice (1-9):");
-						    int Grade;
-						    while (true) 
-						    {
-						        Grade = NumbersN(sc);
-						        if (Grade >= 1 && Grade <= 9) {
-						            break; 
-						        } else {
-						            System.out.println("Zadali jste číslo mimo povolený rozsah. Zadejte prosím ročník v intervalu (1-9):");
-						        }
-						    }
-						    
-						    Knihy.add(new TextBook(TBTitle, TBAuthors, TBYear, true, Grade));
-						    
-						    System.out.println("Učebnice byla úspěšně přidána do knihovny.");
-						    System.out.println(Knihy);
+							Functions.AddTextBook(sc, Knihy);
 							break;
 						case 0:
 							break;
@@ -177,7 +84,7 @@ public class Library
 					break;
 					
 				case 2:
-					Functions.EditBook(Knihy);
+					Functions.EditBook(sc, Knihy);
 					break;
 				
 				case 3:
@@ -185,6 +92,7 @@ public class Library
 					break;
 				
 				case 4:
+					Functions.SetStatus(sc, Knihy);
 					break;
 				
 				case 5:
