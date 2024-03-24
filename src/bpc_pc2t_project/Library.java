@@ -81,7 +81,7 @@ public class Library
 						case 0:
 							break;
 					}
-					break;
+					break; //?? nemas tady na vic?
 					
 				case 2:
 					Functions.EditBook(sc, Knihy);

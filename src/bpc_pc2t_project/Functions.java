@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 public class Functions 
 {
-	Scanner sc = new Scanner(System.in);
-	
+	//private Scanner sc;
 	public static int NumbersN(Scanner sc) 
 	{
 		int Number = 0;
@@ -18,7 +17,8 @@ public class Functions
 		catch(Exception e)
 		{
 			System.out.println("Zadali jste neco jineho, nez je vyzadovano. Zadejte prosim cele cislo ");
-			sc.nextLine(); 
+			//sc.nextLine(); 
+			sc = new Scanner(System.in);
 			Number = NumbersN(sc);
 		}
 		return Number;
@@ -30,7 +30,8 @@ public class Functions
 	    int Year;
 	    
 	    System.out.println("Zadejte název románu:");
-	    sc.nextLine();
+	    //sc.nextLine();
+	    sc = new Scanner(System.in);
 	    Title = sc.nextLine();
 	    
 	    System.out.println("Zadejte autora/autory románu (oddělené čárkou):");
@@ -76,14 +77,12 @@ public class Functions
 	                Genre = Novel.Genres.Hororový;
 	                validChoice = true;
 	                break;
-	            default:
-	                
+	            default:	                
 	            	System.out.println("Neplatná volba. Zadejte prosím platný žánr.");
 	        }
 	    } while (!validChoice);
 	    
 		
-
 	    Library.add(new Novel(Title, Authors, Year, true, Genre));
 	    
 	    System.out.println("Román byl úspěšně přidán do knihovny.");
@@ -96,7 +95,8 @@ public class Functions
 	    int Year;
 	    
 	    System.out.println("Zadejte název učebnice:");
-	    sc.nextLine();
+	    //sc.nextLine();
+	    sc = new Scanner(System.in);
 	    Title = sc.nextLine();
 	    
 	    System.out.println("Zadejte autora/autory učebnice (oddělené čárkou):");
@@ -114,11 +114,10 @@ public class Functions
 	    while (true) 
 	    {
 	        Grade = NumbersN(sc);
-	        if (Grade >= 1 && Grade <= 9) {
+	        if (Grade >= 1 && Grade <= 9)
 	            break; 
-	        } else {
+	        else
 	            System.out.println("Zadali jste číslo mimo povolený rozsah. Zadejte prosím ročník v intervalu (1-9):");
-	        }
 	    }
 	    
 	    Library.add(new TextBook(Title, Authors, Year, true, Grade));
@@ -131,9 +130,9 @@ public class Functions
 	{
 		
 		System.out.println("Zadejte název knihy, kterou chcete upravit:");
-		sc.nextLine(); //Problém s instantním scannem
+		sc = new Scanner(System.in);
+		//sc.nextLine(); //Problém s instantním scannem
 		String Title = sc.nextLine();
-		
 		Book Selected = null;
 		for (Book Book : Library) 
 		{
@@ -164,7 +163,8 @@ public class Functions
 		{
 			case 1:
 				System.out.println("Zadejte jméno/jména autorů, oddělené čárkou:");
-				sc.nextLine();
+				//sc.nextLine();
+				sc = new Scanner(System.in);
 				String[] AuthorsInput = sc.nextLine().split(",");
 				
 			    List<String> Authors = new ArrayList<>();
@@ -218,7 +218,8 @@ public class Functions
 	static void SetStatus(Scanner sc, List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, kterou chcete upravit:");
-		sc.nextLine(); //Problém s instantním scannem
+		//sc.nextLine(); //Problém s instantním scannem
+		sc = new Scanner(System.in);
 		String Title = sc.nextLine();
 		
 		Book Selected = null;

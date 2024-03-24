@@ -13,13 +13,13 @@ public abstract class Book
 	private boolean Availability;
 	
 	
-	public Book(String Title, List<String> Author, int ReleaseYear, boolean Availability) 
+	public Book(String title, List<String> author, int releaseYear, boolean availability) 
 	{
 		super ();
-		this.Title = Title;
-		this.Author = Author;
-		this.ReleaseYear = ReleaseYear;
-		this.Availability = Availability;
+		this.setTitle(title);
+		this.setAuthor(author);
+		this.setReleaseYear(releaseYear);
+		this.setAvailability(availability);
 	}
 
 

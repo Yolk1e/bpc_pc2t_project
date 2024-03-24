@@ -24,9 +24,9 @@ public class Novel extends Book
 		this.Genre = Genre;
 	}
 	
-	public Novel(String Title, List<String> Author, int ReleaseYear, boolean Availability, Genres Genre) {
-		super(Title, Author, ReleaseYear, Availability);
-		this.Genre = Genre;
+	public Novel(String title, List<String> author, int releaseYear, boolean availability, Genres genre) {
+		super(title, author, releaseYear, availability);
+		setGenre(genre);
 	}
 	
 	//Přidání žánru k výpisu knihy
