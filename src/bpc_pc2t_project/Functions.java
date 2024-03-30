@@ -182,7 +182,7 @@ public class Functions
 				break;
 				
 			case 3:
-				System.out.println("V aktuální chíli je tato kniha: " + (Selected.isAvailability() ? "K dispozici" : "Vypujcena") + ".");
+				System.out.println("V aktuální chvíli je tato kniha: " + (Selected.isAvailability() ? "K dispozici" : "Vypujcena") + ".");
 				System.out.println("Chcete tento stav změnit na: " + (Selected.isAvailability() ? "Vypujcena" : "K dispozici") + "?" );
 				System.out.println("╔═══════════╗");
 				System.out.println("║ 1 .. Ano  ║");
@@ -231,7 +231,7 @@ public class Functions
 			return;
 		}
 		
-		System.out.println("V aktuální chíli je tato kniha: " + (Selected.isAvailability() ? "K dispozici" : "Vypujcena") + ".");
+		System.out.println("V aktuální chvíli je tato kniha: " + (Selected.isAvailability() ? "K dispozici" : "Vypujcena") + ".");
 		System.out.println("Chcete tento stav změnit na: " + (Selected.isAvailability() ? "Vypujcena" : "K dispozici") + "?" );
 		System.out.println("╔═══════════╗");
 		System.out.println("║ 1 .. Ano  ║");
