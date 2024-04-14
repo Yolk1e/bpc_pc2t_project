@@ -4,14 +4,14 @@ import java.util.List;
 
 public class TextBook extends Book 
 {
-	private int Grade;
+	private static int Grade;
 	
 	public TextBook(String Title, List<String> Author, int ReleaseYear, boolean Availability, int Class) {
 		super(Title, Author, ReleaseYear, Availability);
 		this.setGrade(Class);
 	}
 
-	public int getGrade() {
+	public static int getGrade() {
 		return Grade;
 	}
 

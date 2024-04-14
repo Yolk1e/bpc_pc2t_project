@@ -1,6 +1,8 @@
 package bpc_pc2t_project;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -182,8 +184,8 @@ public class Functions
 				break;
 				
 			case 3:
-				System.out.println("V aktuální chvíli je tato kniha: " + (Selected.isAvailability() ? "K dispozici" : "Vypujcena") + ".");
-				System.out.println("Chcete tento stav změnit na: " + (Selected.isAvailability() ? "Vypujcena" : "K dispozici") + "?" );
+				System.out.println("V aktuální chvíli je tato kniha: " + (Selected.isAvailability() ? "K dispozici" : "Vypůjčena") + ".");
+				System.out.println("Chcete tento stav změnit na: " + (Selected.isAvailability() ? "Vypůjčena" : "K dispozici") + "?" );
 				System.out.println("╔═══════════╗");
 				System.out.println("║ 1 .. Ano  ║");
 				System.out.println("║ 2 .. Ne   ║");
@@ -231,8 +233,8 @@ public class Functions
 			return;
 		}
 		
-		System.out.println("V aktuální chvíli je tato kniha: " + (Selected.isAvailability() ? "K dispozici" : "Vypujcena") + ".");
-		System.out.println("Chcete tento stav změnit na: " + (Selected.isAvailability() ? "Vypujcena" : "K dispozici") + "?" );
+		System.out.println("V aktuální chvíli je tato kniha: " + (Selected.isAvailability() ? "K dispozici" : "Vypůjčena") + ".");
+		System.out.println("Chcete tento stav změnit na: " + (Selected.isAvailability() ? "Vypůjčena" : "K dispozici") + "?" );
 		System.out.println("╔═══════════╗");
 		System.out.println("║ 1 .. Ano  ║");
 		System.out.println("║ 2 .. Ne   ║");
@@ -257,6 +259,56 @@ public class Functions
 			System.out.println("Byla zadána neplatná volba. Vracím do hlavního menu.");
 			return;
 		}
+	}
 		
+	static void DeleteBook(Scanner sc, List<Book> Library) 
+	{
+		System.out.println("Zadejte název knihy, kterou chcete odstranit:");
+		sc = new Scanner(System.in);
+		String Title = sc.nextLine();
+			
+		Book Selected = null;
+		for (Book Book : Library) 
+		{
+			if(Book.getTitle().compareToIgnoreCase(Title) == 0) 
+			{
+				Selected = Book;
+				Library.remove(Book);
+				System.out.println("Kniha s Vámi zadaným názvem " + Title + " byla odstraněna.");
+				break;
+			}
+				
+		}
+			
+		if (Selected == null) 
+		{
+			System.out.println("Kniha s Vámi zadaným názvem " + Title + " nebyla nalezena!");
+			return;
+		}
+	}
+	
+	static void PrintBooks(List<Book> Library) 
+	{
+		if (Library.isEmpty())
+		{
+			System.out.println("V knihovně nebyli nalezeny žádné knihy.");
+			return;
+		}
+		
+		Collections.sort(Library, Comparator.comparing(Book::getTitle));
+		
+		for (Book Book : Library) 
+		{
+			System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
+			if (Book instanceof Novel) 
+			{
+				System.out.print(", Žánr: " + Novel.getGenre());
+			}
+			else if (Book instanceof TextBook)
+			{
+				System.out.print(", Ročník: " + TextBook.getGrade());
+			}
+			System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
+		}
 	}
 }

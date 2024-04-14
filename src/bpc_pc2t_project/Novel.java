@@ -14,14 +14,14 @@ public class Novel extends Book
 		Hororový
 	}
 	
-	private Genres Genre;
+	private static Genres Genre;
 	
-	public Genres getGenre() {
+	public static Genres getGenre() {
 		return Genre;
 	}
 
 	public void setGenre(Genres Genre) {
-		this.Genre = Genre;
+		Novel.Genre = Genre;
 	}
 	
 	public Novel(String title, List<String> author, int releaseYear, boolean availability, Genres genre) {

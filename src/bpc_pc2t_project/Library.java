@@ -35,6 +35,7 @@ public class Library
 	
 	
 		Knihy.add(new Novel("Harry Potter", List.of("J. K. Rowling"), 1997, true, Novel.Genres.Fantasy));
+		Knihy.add(new TextBook("Matematika", List.of("Mirek Hlava, Michal Urban"), 1997, false, 8));
 		
 		Scanner sc=new Scanner(System.in);
 		int Option;
@@ -89,6 +90,7 @@ public class Library
 				
 				case 3:
 					System.out.println(Knihy);
+					Functions.DeleteBook(sc, Knihy);
 					break;
 				
 				case 4:
@@ -96,6 +98,7 @@ public class Library
 					break;
 				
 				case 5:
+					Functions.PrintBooks(Knihy);
 					break;
 					
 				case 6:
