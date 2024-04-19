@@ -524,27 +524,45 @@ public class Functions
 		System.out.println("Zadejte název knihy, o které chcete načíst informace ze souboru:");
 		sc = new Scanner(System.in); 
 		String Filename = (sc.nextLine() + ".txt");
-		try (BufferedReader Reader = new BufferedReader(new FileReader(Filename)))
+		BufferedReader Reader = null;
+		try
 		{
-			String Title = Reader.readLine().split( " od ")[0];
-			String AuthorsPart = Reader.readLine().split( " od ")[1];
-			List<String> Authors = new ArrayList<>();
-			for (String Author : AuthorsPart.split(", ")) 
+			Reader = new BufferedReader(new FileReader(Filename));
+			String line = Reader.readLine();
+			while(line != null)
 			{
-				Authors.add(Author);
-			}
-			int ReleaseYear = Integer.parseInt(Reader.readLine().split(", Rok vydání: ")[1]);
-			boolean Availability = Reader.readLine().split(", Dostupnost: ")[1].equalsIgnoreCase("K dispozici");
-			String TypePart = Reader.readLine();
-			if (TypePart.startsWith(", Žánr:")) 
-			{
-				String Genre = TypePart.split(": ")[1];
-				return new Novel(Title, Authors, ReleaseYear, Availability, Novel.Genres.valueOf(Genre));
-			}
-			else
-			{
-				int Grade = Integer.parseInt(TypePart.split(": ")[1]);
-				return new TextBook(Title, Authors, ReleaseYear, Availability, Grade);
+				String Title = line.split( " od ")[0];
+				String AuthorsPart = line.split( " od ")[1];
+				String AuthorsOnly = "", TypePart = "", Genre = "", grade = "";
+				
+				if(AuthorsPart.contains("Ročník"))
+				{
+					AuthorsOnly = AuthorsPart.split( ", Ročník: ")[0];
+					TypePart = line.split(", Ročník: ")[1];
+					grade = TypePart.split(",")[0];
+				}
+				else
+				{
+					AuthorsOnly = AuthorsPart.split( ", Žánr: ")[0];
+					TypePart = line.split(", Žánr: ")[1];
+					Genre = TypePart.split(",")[0];
+				}
+				
+				List<String> Authors = new ArrayList<>();
+				for (String Author : AuthorsOnly.split(", "))
+					Authors.add(Author);
+					
+				String Year = line.split(", Rok vydání: ")[1];
+				int ReleaseYear = Integer.parseInt(Year.split(", Dostupnost: ")[0]);
+				boolean Availability = line.split(", Dostupnost: ")[1].equalsIgnoreCase("K dispozici");
+				
+				if (Genre != "") 
+					return new Novel(Title, Authors, ReleaseYear, Availability, Novel.Genres.valueOf(Genre));
+				else
+				{
+					int Grade = Integer.parseInt(grade.split(",")[0]);
+					return new TextBook(Title, Authors, ReleaseYear, Availability, Grade);
+				}
 			}
 		}
 		catch (IOException e) 
