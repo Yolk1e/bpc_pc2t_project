@@ -1,5 +1,7 @@
 package bpc_pc2t_project;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -488,18 +490,18 @@ public class Functions
 			if (Book.getTitle().compareToIgnoreCase(Title) == 0) 
 			{
 				BookFounded = true;
-				try (FileWriter File = new FileWriter(Title + ".txt"))
+				try (FileWriter Writer = new FileWriter(Title + ".txt"))
 				{
-					File.write(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
+					Writer.write(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
 					if (Book instanceof Novel) 
 					{
-						File.write(", Žánr: " + Novel.getGenre());
+						Writer.write(", Žánr: " + Novel.getGenre());
 					}
 					else if (Book instanceof TextBook)
 					{
-						File.write(", Ročník: " + TextBook.getGrade());
+						Writer.write(", Ročník: " + TextBook.getGrade());
 					}
-					File.write(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
+					Writer.write(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
 					System.out.println("Kniha " + Title + " byla uložena do souboru " + Title + ".txt.");
 				}
 				catch (IOException e) 
@@ -515,5 +517,41 @@ public class Functions
 		{
 			System.out.println("Kniha s Vámi zadaným názvem " + Title + " nebyla nalezena!");
 		}
+	}
+	
+	static Book LoadBookFromFile(Scanner sc, List<Book> Library) 
+	{
+		System.out.println("Zadejte název knihy, o které chcete načíst informace ze souboru:");
+		sc = new Scanner(System.in); 
+		String Filename = (sc.nextLine() + ".txt");
+		try (BufferedReader Reader = new BufferedReader(new FileReader(Filename)))
+		{
+			String Title = Reader.readLine().split( " od ")[0];
+			String AuthorsPart = Reader.readLine().split( " od ")[1];
+			List<String> Authors = new ArrayList<>();
+			for (String Author : AuthorsPart.split(", ")) 
+			{
+				Authors.add(Author);
+			}
+			int ReleaseYear = Integer.parseInt(Reader.readLine().split(", Rok vydání: ")[1]);
+			boolean Availability = Reader.readLine().split(", Dostupnost: ")[1].equalsIgnoreCase("K dispozici");
+			String TypePart = Reader.readLine();
+			if (TypePart.startsWith(", Žánr:")) 
+			{
+				String Genre = TypePart.split(": ")[1];
+				return new Novel(Title, Authors, ReleaseYear, Availability, Novel.Genres.valueOf(Genre));
+			}
+			else
+			{
+				int Grade = Integer.parseInt(TypePart.split(": ")[1]);
+				return new TextBook(Title, Authors, ReleaseYear, Availability, Grade);
+			}
+		}
+		catch (IOException e) 
+		{
+			System.out.println("Chyba při čtení ze souboru " + Filename + ".");
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

@@ -34,7 +34,7 @@ public class Library
 		List<Book> Knihy = new ArrayList<Book>();
 	
 	
-		Knihy.add(new Novel("Harry Potter", List.of("J. K. Rowling"), 1997, true, Novel.Genres.Fantasy));
+		//Knihy.add(new Novel("Harry Potter", List.of("J. K. Rowling"), 1997, true, Novel.Genres.Fantasy));
 		Knihy.add(new TextBook("Matematika", List.of("Mirek Hlava", "Michal Urban"), 1997, false, 8));
 		Knihy.add(new TextBook("Matematika 2", List.of("Mirek Hlava", "Michal Urban"), 1985, false, 8));
 		Knihy.add(new TextBook("Matematika 3", List.of("Mirek Hlava", "Michal Urban"), 2006, false, 8));
@@ -126,6 +126,7 @@ public class Library
 					break;
 					
 				case 11:
+					Functions.LoadBookFromFile(sc, Knihy);
 					break;
 					
 				case 12:
