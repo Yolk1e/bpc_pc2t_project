@@ -311,4 +311,76 @@ public class Functions
 			System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
 		}
 	}
+	
+	static void FindBookInfo(Scanner sc, List<Book> Library) 
+	{
+		System.out.println("Zadejte název knihy, o které chcete zjistit informace:");
+		sc = new Scanner(System.in);
+		String Title = sc.nextLine();
+			
+		Book Selected = null;
+		for (Book Book : Library) 
+		{
+			if(Book.getTitle().compareToIgnoreCase(Title) == 0) 
+			{
+				Selected = Book;
+				System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
+				if (Book instanceof Novel) 
+				{
+					System.out.print(", Žánr: " + Novel.getGenre());
+				}
+				else if (Book instanceof TextBook)
+				{
+					System.out.print(", Ročník: " + TextBook.getGrade());
+				}
+				System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
+				break;
+			}
+				
+		}
+			
+		if (Selected == null) 
+		{
+			System.out.println("Kniha s Vámi zadaným názvem " + Title + " nebyla nalezena!");
+			return;
+		}
+	}
+	
+	static void PrintBooksByAuthor (Scanner sc, List<Book> Library)
+	{
+		System.out.println("Zadejte jméno autora, o kterém chcete zjistit jeho vydané knihy:");
+		sc = new Scanner(System.in);
+		String Author = sc.nextLine();
+		
+		Collections.sort(Library, Comparator.comparingInt(Book::getReleaseYear));
+		
+		boolean AuthorFound = false;
+		for (Book Book : Library) 
+		{	
+			for (String BookAuthor : Book.getAuthor()) 
+			{
+	            if (BookAuthor.equalsIgnoreCase(Author))  
+				{
+					AuthorFound = true;
+					System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
+					if (Book instanceof Novel) 
+					{
+						System.out.print(", Žánr: " + Novel.getGenre());
+					}
+					else if (Book instanceof TextBook)
+					{
+						System.out.print(", Ročník: " + TextBook.getGrade());
+					}
+					System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
+					break;
+				}
+			}
+		}
+	            
+		if (AuthorFound == false)
+		{
+			System.out.println("Kniha s Vámi zadaným autorem " + Author + " nebyla nalezena!");
+			return;
+		}
+	}
 }
