@@ -86,7 +86,7 @@ public class Library
 						case 0:
 							break;
 					}
-					break; //?? nemas tady na vic?
+					
 					
 				case 2:
 					Functions.EditBook(sc, Knihy);
@@ -106,7 +106,7 @@ public class Library
 					break;
 					
 				case 6:
-					Functions.FindBookInfo(sc, Knihy);
+					Functions.PrintBooksByName(sc, Knihy);
 					break;
 					
 				case 7:
@@ -114,12 +114,15 @@ public class Library
 					break;
 					
 				case 8:
+					Functions.PrintBooksByGenre(sc, Knihy);
 					break;
 					
 				case 9:
+					Functions.PrintBooksByBorrowed(Knihy);
 					break;
 					
 				case 10:
+					Functions.SaveBookInFile(sc, Knihy);
 					break;
 					
 				case 11:

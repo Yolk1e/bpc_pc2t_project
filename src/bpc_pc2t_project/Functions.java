@@ -1,5 +1,7 @@
 package bpc_pc2t_project;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -312,7 +314,7 @@ public class Functions
 		}
 	}
 	
-	static void FindBookInfo(Scanner sc, List<Book> Library) 
+	static void PrintBooksByName(Scanner sc, List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, o které chcete zjistit informace:");
 		sc = new Scanner(System.in);
@@ -377,10 +379,141 @@ public class Functions
 			}
 		}
 	            
-		if (AuthorFound == false)
+		if (!AuthorFound)
 		{
 			System.out.println("Kniha s Vámi zadaným autorem " + Author + " nebyla nalezena!");
 			return;
+		}
+	}
+	
+	static void PrintBooksByGenre(Scanner sc, List<Book> Library)
+	{
+		boolean BookOfGenre = false;
+		Novel.Genres Genre = null;
+		boolean validChoice = false;
+	    do {
+	    	System.out.println("╔════════════════════════════════════════╗");
+			System.out.println("║ Vyberte žánr který chcete vypsat:      ║");
+			System.out.println("║ 1 .. Detektivní                        ║");
+			System.out.println("║ 2 .. Fantasy                           ║");
+			System.out.println("║ 3 .. Scifi                             ║");
+			System.out.println("║ 4 .. Venkovský                         ║");
+			System.out.println("║ 5 .. Hororový                          ║");
+			System.out.println("╚════════════════════════════════════════╝");
+	        //int GenreOption = NumbersN(sc);
+	        //switch (GenreOption) {
+			switch(NumbersN(sc)) {
+	            case 1:
+	                Genre = Novel.Genres.Detektivní;
+	                validChoice = true;
+	                break;
+	            case 2:
+	                Genre = Novel.Genres.Fantasy;
+	                validChoice = true;
+	                break;
+	            case 3:
+	                Genre = Novel.Genres.Scifi;
+	                validChoice = true;
+	                break;
+	            case 4:
+	                Genre = Novel.Genres.Venkovský;
+	                validChoice = true;
+	                break;
+	            case 5:
+	                Genre = Novel.Genres.Hororový;
+	                validChoice = true;
+	                break;
+	            default:	                
+	            	System.out.println("Neplatná volba. Zadejte prosím platný žánr.");
+	        }
+	    } while (!validChoice);
+	    
+	    System.out.println("Všechny knihy žánru " + Genre + ":");
+	    
+	    for (Book Book : Library) 
+	    {
+	    	if (Book instanceof Novel) 
+	    	{
+	    		if (Novel.getGenre().equals(Genre)) 
+	    		{
+	    			BookOfGenre = true;
+	    			System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
+	    			System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
+	    		}
+	    		    			
+	    	}
+	    }
+	    if (!BookOfGenre) 
+	    {
+	    	System.out.println("Nebyla nalezena žádná kniha s tímto žánrem.");
+	    }
+	}
+	
+	static void PrintBooksByBorrowed (List<Book> Library) 
+	{
+		boolean BorrowedBooks = false;
+		System.out.println("Seznam vypůjčených knih:");
+		for (Book Book : Library) 
+		{
+			if (!Book.isAvailability()) 
+			{
+				BorrowedBooks = true;
+				System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
+				if (Book instanceof Novel) 
+				{
+					System.out.println(", Typ knihy: Román");
+				}
+				else if (Book instanceof TextBook) 
+				{
+					System.out.println(", Typ knihy: Učebnice");
+				}
+			}
+		}
+		
+		if (!BorrowedBooks) 
+		{
+			System.out.println("Nebyla nalezena žádná vypůjčené kniha.");
+		}
+	}
+	
+	static void SaveBookInFile(Scanner sc, List<Book> Library) 
+	{
+		System.out.println("Zadejte název knihy, o kterou chcete uložit do souboru:");
+		sc = new Scanner(System.in); 
+		boolean BookFounded = false;
+		String Title = sc.nextLine();
+		
+		for (Book Book : Library) 
+		{
+			if (Book.getTitle().compareToIgnoreCase(Title) == 0) 
+			{
+				BookFounded = true;
+				try (FileWriter File = new FileWriter(Title + ".txt"))
+				{
+					File.write(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
+					if (Book instanceof Novel) 
+					{
+						File.write(", Žánr: " + Novel.getGenre());
+					}
+					else if (Book instanceof TextBook)
+					{
+						File.write(", Ročník: " + TextBook.getGrade());
+					}
+					File.write(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
+					System.out.println("Kniha " + Title + " byla uložena do souboru " + Title + ".txt.");
+				}
+				catch (IOException e) 
+				{
+					System.out.println("Chyba při zápisu do souboru " + Title + ".txt.");
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+		
+		if (!BookFounded) 
+		{
+			System.out.println("Kniha s Vámi zadaným názvem " + Title + " nebyla nalezena!");
 		}
 	}
 }
