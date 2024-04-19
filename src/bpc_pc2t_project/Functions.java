@@ -519,7 +519,7 @@ public class Functions
 		}
 	}
 	
-	static Book LoadBookFromFile(Scanner sc, List<Book> Library) 
+	static void LoadBookFromFile(Scanner sc, List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, o které chcete načíst informace ze souboru:");
 		sc = new Scanner(System.in); 
@@ -557,11 +557,15 @@ public class Functions
 				boolean Availability = line.split(", Dostupnost: ")[1].equalsIgnoreCase("K dispozici");
 				
 				if (Genre != "") 
-					return new Novel(Title, Authors, ReleaseYear, Availability, Novel.Genres.valueOf(Genre));
+				{
+					Library.add(new Novel(Title, Authors, ReleaseYear, Availability, Novel.Genres.valueOf(Genre)));
+					return;
+				}
 				else
 				{
 					int Grade = Integer.parseInt(grade.split(",")[0]);
-					return new TextBook(Title, Authors, ReleaseYear, Availability, Grade);
+					Library.add(new TextBook(Title, Authors, ReleaseYear, Availability, Grade));
+					return;
 				}
 			}
 		}
@@ -570,6 +574,6 @@ public class Functions
 			System.out.println("Chyba při čtení ze souboru " + Filename + ".");
 			e.printStackTrace();
 		}
-		return null;
+		
 	}
 }
