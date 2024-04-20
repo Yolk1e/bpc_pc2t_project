@@ -1,6 +1,7 @@
 package bpc_pc2t_project;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -88,11 +89,10 @@ public class Functions
 	        }
 	    } while (!validChoice);
 	    
-		
 	    Library.add(new Novel(Title, Authors, Year, true, Genre));
 	    
 	    System.out.println("Román byl úspěšně přidán do knihovny.");
-	    System.out.println(Library);
+	    return;
 	}
 	
 	static void AddTextBook(Scanner sc, List<Book> Library) 
@@ -128,15 +128,13 @@ public class Functions
 	    Library.add(new TextBook(Title, Authors, Year, true, Grade));
 	    
 	    System.out.println("Učebnice byla úspěšně přidána do knihovny.");
-	    System.out.println(Library);
+	    return;
 	}
 	
 	static void EditBook(Scanner sc, List<Book> Library) 
 	{
-		
 		System.out.println("Zadejte název knihy, kterou chcete upravit:");
 		sc = new Scanner(System.in);
-		//sc.nextLine(); //Problém s instantním scannem
 		String Title = sc.nextLine();
 		Book Selected = null;
 		for (Book Book : Library) 
@@ -146,7 +144,6 @@ public class Functions
 				Selected = Book;
 				break;
 			}
-			
 		}
 		
 		if (Selected == null) 
@@ -162,14 +159,10 @@ public class Functions
 		System.out.println("║ 3 .. Stav dostupnosti                  ║");
 		System.out.println("╚════════════════════════════════════════╝");
 	
-		//int Choice = sc.nextInt();
-		
-		//switch (Choice) 
 		switch (sc.nextInt()) 
 		{
 			case 1:
 				System.out.println("Zadejte jméno/jména autorů, oddělené čárkou:");
-				//sc.nextLine();
 				sc = new Scanner(System.in);
 				String[] AuthorsInput = sc.nextLine().split(",");
 				
@@ -194,8 +187,7 @@ public class Functions
 				System.out.println("║ 1 .. Ano  ║");
 				System.out.println("║ 2 .. Ne   ║");
 				System.out.println("╚═══════════╝");
-				//int Option = sc.nextInt();
-				//if(Option == 1)
+
 				if(sc.nextInt() == 1)
 				{
 					if(Selected.isAvailability() == true) 
@@ -209,6 +201,9 @@ public class Functions
 				else
 					System.out.println("Byla zadána neplatná volba. Vracím do hlavního menu.");
 				break;
+			default:
+				System.out.println("Byla zadána neplatná volba. Vracím do hlavního menu.");
+				
 		}
 		
 	}
@@ -216,7 +211,6 @@ public class Functions
 	static void SetStatus(Scanner sc, List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, kterou chcete upravit:");
-		//sc.nextLine(); //Problém s instantním scannem
 		sc = new Scanner(System.in);
 		String Title = sc.nextLine();
 		
@@ -228,7 +222,6 @@ public class Functions
 				Selected = Book;
 				break;
 			}
-			
 		}
 		
 		if (Selected == null) 
@@ -243,8 +236,7 @@ public class Functions
 		System.out.println("║ 1 .. Ano  ║");
 		System.out.println("║ 2 .. Ne   ║");
 		System.out.println("╚═══════════╝");
-		//int Choice = sc.nextInt();
-		//if(Choice == 1)
+
 		if(sc.nextInt() == 1) 
 		{
 			if(Selected.isAvailability() == true) 
@@ -280,8 +272,7 @@ public class Functions
 				Library.remove(Book);
 				System.out.println("Kniha s Vámi zadaným názvem " + Title + " byla odstraněna.");
 				break;
-			}
-				
+			}	
 		}
 			
 		if (Selected == null) 
@@ -339,8 +330,7 @@ public class Functions
 				}
 				System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
 				break;
-			}
-				
+			}	
 		}
 			
 		if (Selected == null) 
@@ -402,8 +392,7 @@ public class Functions
 			System.out.println("║ 4 .. Venkovský                         ║");
 			System.out.println("║ 5 .. Hororový                          ║");
 			System.out.println("╚════════════════════════════════════════╝");
-	        //int GenreOption = NumbersN(sc);
-	        //switch (GenreOption) {
+
 			switch(NumbersN(sc)) {
 	            case 1:
 	                Genre = Novel.Genres.Detektivní;
@@ -441,8 +430,7 @@ public class Functions
 	    			BookOfGenre = true;
 	    			System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
 	    			System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
-	    		}
-	    		    			
+	    		}    			
 	    	}
 	    }
 	    if (!BookOfGenre) 
@@ -559,21 +547,19 @@ public class Functions
 				if (Genre != "") 
 				{
 					Library.add(new Novel(Title, Authors, ReleaseYear, Availability, Novel.Genres.valueOf(Genre)));
-					return;
 				}
 				else
 				{
 					int Grade = Integer.parseInt(grade.split(",")[0]);
 					Library.add(new TextBook(Title, Authors, ReleaseYear, Availability, Grade));
-					return;
 				}
+				System.out.println("Kniha " + Title + " byla úspěšně přidána.");
+				return;
 			}
 		}
 		catch (IOException e) 
 		{
-			System.out.println("Chyba při čtení ze souboru " + Filename + ".");
-			e.printStackTrace();
+			System.out.println("Chyba při čtení ze souboru " + Filename);
 		}
-		
 	}
 }

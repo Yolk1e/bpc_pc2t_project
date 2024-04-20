@@ -79,21 +79,21 @@ public class Library
 					{
 						case 1:
 							Functions.AddNovel(sc, Knihy);
-						    break;
+							break;
 						case 2:
 							Functions.AddTextBook(sc, Knihy);
 							break;
 						case 0:
+							System.out.println("Vracím zpět do hlavního menu.");
 							break;
 					}
-					
+					break;
 					
 				case 2:
 					Functions.EditBook(sc, Knihy);
 					break;
 				
 				case 3:
-					System.out.println(Knihy);
 					Functions.DeleteBook(sc, Knihy);
 					break;
 				
@@ -130,6 +130,7 @@ public class Library
 					break;
 					
 				case 12:
+					System.out.println("Aplikace byla ukončena.");
 					run=false;
 					break;
 				
