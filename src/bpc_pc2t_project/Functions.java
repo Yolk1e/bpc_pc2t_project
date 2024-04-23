@@ -491,6 +491,7 @@ public class Functions
 					}
 					Writer.write(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
 					System.out.println("Kniha " + Title + " byla uložena do souboru " + Title + ".txt.");
+					Writer.close();
 				}
 				catch (IOException e) 
 				{
@@ -556,6 +557,7 @@ public class Functions
 				System.out.println("Kniha " + Title + " byla úspěšně přidána.");
 				return;
 			}
+			Reader.close();
 		}
 		catch (IOException e) 
 		{
