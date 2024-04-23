@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,21 +23,8 @@ public class Library
 	
 	public static void main(String[] args) {
 		
-		
-	
-		//System.out.println(book);
-	
-	
 		List<Book> Knihy = new ArrayList<Book>();
-	
-	/*
-		Knihy.add(new TextBook("Matematika", List.of("Mirek Hlava", "Michal Urban"), 1997, false, 8));
-		Knihy.add(new TextBook("Matematika 2", List.of("Mirek Hlava", "Michal Urban"), 1985, false, 8));
-		Knihy.add(new TextBook("Matematika 3", List.of("Mirek Hlava", "Michal Urban"), 2006, false, 8));
-		Knihy.add(new TextBook("Pravděpodobnost a statistika", List.of("Mirek Hlava"), 2019, false, 8));*/
-		//Knihy.add(new Novel("Harry Potter", List.of("J. K. Rowling"), 1999, true, Novel.Genres.Fantasy));
-		
-		
+
 		Scanner sc=new Scanner(System.in);
 		int Option;
 		boolean run=true;

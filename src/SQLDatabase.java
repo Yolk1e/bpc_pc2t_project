@@ -1,5 +1,3 @@
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
-//import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -134,3 +131,4 @@ public class SQLDatabase {
 	    }
 	}
 }
+//https://jar-download.com/artifacts/org.slf4j/slf4j-simple PRIPAD NOUZE

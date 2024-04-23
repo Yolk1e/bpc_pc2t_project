@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,7 +11,6 @@ import java.util.Scanner;
 
 public class Functions 
 {
-	//private Scanner sc;
 	public static int NumbersN(Scanner sc) 
 	{
 		int Number = 0;
@@ -23,8 +20,7 @@ public class Functions
 		}
 		catch(Exception e)
 		{
-			System.out.println("Zadali jste neco jineho, nez je vyzadovano. Zadejte prosim cele cislo ");
-			//sc.nextLine(); 
+			System.out.println("Zadali jste neco jineho, nez je vyzadovano. Zadejte prosim cele cislo "); 
 			sc = new Scanner(System.in);
 			Number = NumbersN(sc);
 		}
@@ -37,7 +33,6 @@ public class Functions
 	    int Year;
 	    
 	    System.out.println("Zadejte název románu:");
-	    //sc.nextLine();
 	    sc = new Scanner(System.in);
 	    Title = sc.nextLine();
 	    
@@ -61,8 +56,6 @@ public class Functions
 			System.out.println("║ 4 .. Venkovský                         ║");
 			System.out.println("║ 5 .. Hororový                          ║");
 			System.out.println("╚════════════════════════════════════════╝");
-	        //int GenreOption = NumbersN(sc);
-	        //switch (GenreOption) {
 			switch(NumbersN(sc)) {
 	            case 1:
 	                Genre = Novel.Genres.Detektivní;
@@ -101,7 +94,6 @@ public class Functions
 	    int Year;
 	    
 	    System.out.println("Zadejte název učebnice:");
-	    //sc.nextLine();
 	    sc = new Scanner(System.in);
 	    Title = sc.nextLine();
 	    
