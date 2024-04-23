@@ -1,4 +1,4 @@
-package bpc_pc2t_project;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -72,16 +72,11 @@ public class SQLDatabase {
 			for (Book Book : Library) {
 					PreparedStatement pstmt = conn.prepareStatement(query); 
 					pstmt.setString(1, Book.getTitle());
-					System.out.println(Book.getTitle());
 					pstmt.setString(2, String.join(", ", Book.getAuthor()));
-					System.out.println(Book.getAuthor());
 					pstmt.setInt(3, Book.getReleaseYear());
-					System.out.println(Book.getReleaseYear());
 				if (Book instanceof Novel) {
 					pstmt.setString(4, "Novel");
-					
 					pstmt.setString(5, Novel.getGenre().toString());
-					System.out.println(Novel.getGenre().toString());
 					pstmt.setNull(6, Types.INTEGER);
 				}
 				else {
@@ -90,7 +85,6 @@ public class SQLDatabase {
 					pstmt.setInt(6, TextBook.getGrade());
 				}
 				pstmt.setBoolean(7, Book.isAvailability());
-				System.out.println(Book.isAvailability());
 				pstmt.executeUpdate();
 			}
 			System.out.println("Data byla uložena do databáze.");
@@ -106,26 +100,19 @@ public class SQLDatabase {
 				PreparedStatement pstmt = conn.prepareStatement(query);
 				ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println(rs.getInt(1));
 				String Title = rs.getString(2);
-				System.out.println(Title);
 				String[] AuthorsInput = rs.getString(3).split(", ");
 			    List<String> Authors = Arrays.asList(AuthorsInput);
-				System.out.println(Authors);
 			    int ReleaseYear = rs.getInt(4);
-				System.out.println(ReleaseYear);
 			    Boolean Availability = rs.getBoolean(8);
-				System.out.println(Availability);
 			    if ("Novel".equals(rs.getString(5))) 
 				{
 			    	Novel.Genres Genre = Novel.Genres.valueOf(rs.getString(6));
-					System.out.println(Genre);
 			    	Library.add(new Novel(Title, Authors, ReleaseYear, Availability, Genre));
 				}
 				else
 				{
 					int Grade = rs.getInt(7);
-					System.out.println(Grade);
 					Library.add(new TextBook(Title, Authors, ReleaseYear, Availability, Grade));
 				}
 			}

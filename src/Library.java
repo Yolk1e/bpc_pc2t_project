@@ -1,4 +1,4 @@
-package bpc_pc2t_project;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Library 
 {
-	//Konrola celych cisel. Numbers+N (N - cele cislo)
 	public static int NumbersN(Scanner sc) 
 	{
 		int Number = 0;
