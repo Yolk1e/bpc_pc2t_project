@@ -66,10 +66,10 @@ public class Library
 					switch(Option) 
 					{
 						case 1:
-							Functions.AddNovel(sc, Knihy);
+							Functions.AddNovel(Knihy);
 							break;
 						case 2:
-							Functions.AddTextBook(sc, Knihy);
+							Functions.AddTextBook(Knihy);
 							break;
 						case 0:
 							System.out.println("Vracím zpět do hlavního menu.");
@@ -78,15 +78,15 @@ public class Library
 					break;
 					
 				case 2:
-					Functions.EditBook(sc, Knihy);
+					Functions.EditBook(Knihy);
 					break;
 				
 				case 3:
-					Functions.DeleteBook(sc, Knihy);
+					Functions.DeleteBook(Knihy);
 					break;
 				
 				case 4:
-					Functions.SetStatus(sc, Knihy);
+					Functions.SetStatus(Knihy);
 					break;
 				
 				case 5:
@@ -94,15 +94,15 @@ public class Library
 					break;
 					
 				case 6:
-					Functions.PrintBooksByName(sc, Knihy);
+					Functions.PrintBooksByName(Knihy);
 					break;
 					
 				case 7:
-					Functions.PrintBooksByAuthor(sc, Knihy);
+					Functions.PrintBooksByAuthor(Knihy);
 					break;
 					
 				case 8:
-					Functions.PrintBooksByGenre(sc, Knihy);
+					Functions.PrintBooksByGenre(Knihy);
 					break;
 					
 				case 9:
@@ -110,11 +110,11 @@ public class Library
 					break;
 					
 				case 10:
-					Functions.SaveBookInFile(sc, Knihy);
+					Functions.SaveBookInFile(Knihy);
 					break;
 					
 				case 11:
-					Functions.LoadBookFromFile(sc, Knihy);
+					Functions.LoadBookFromFile(Knihy);
 					break;
 					
 				case 12:

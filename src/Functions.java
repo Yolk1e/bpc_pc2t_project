@@ -27,13 +27,13 @@ public class Functions
 		return Number;
 	}
 	
-	static void AddNovel(Scanner sc, List<Book> Library) 
+	static void AddNovel(List<Book> Library) 
 	{
 		String Title;
 	    int Year;
 	    
 	    System.out.println("Zadejte název románu:");
-	    sc = new Scanner(System.in);
+	    Scanner sc = new Scanner(System.in);
 	    Title = sc.nextLine();
 	    
 	    System.out.println("Zadejte autora/autory románu (oddělené čárkou):");
@@ -88,13 +88,13 @@ public class Functions
 	    return;
 	}
 	
-	static void AddTextBook(Scanner sc, List<Book> Library) 
+	static void AddTextBook(List<Book> Library) 
 	{
 		String Title;
 	    int Year;
 	    
 	    System.out.println("Zadejte název učebnice:");
-	    sc = new Scanner(System.in);
+	    Scanner sc = new Scanner(System.in);
 	    Title = sc.nextLine();
 	    
 	    System.out.println("Zadejte autora/autory učebnice (oddělené čárkou):");
@@ -123,10 +123,10 @@ public class Functions
 	    return;
 	}
 	
-	static void EditBook(Scanner sc, List<Book> Library) 
+	static void EditBook(List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, kterou chcete upravit:");
-		sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		String Title = sc.nextLine();
 		Book Selected = null;
 		for (Book Book : Library) 
@@ -200,10 +200,10 @@ public class Functions
 		
 	}
 	
-	static void SetStatus(Scanner sc, List<Book> Library) 
+	static void SetStatus(List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, kterou chcete upravit:");
-		sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		String Title = sc.nextLine();
 		
 		Book Selected = null;
@@ -249,10 +249,10 @@ public class Functions
 		}
 	}
 		
-	static void DeleteBook(Scanner sc, List<Book> Library) 
+	static void DeleteBook(List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, kterou chcete odstranit:");
-		sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		String Title = sc.nextLine();
 			
 		Book Selected = null;
@@ -299,10 +299,10 @@ public class Functions
 		}
 	}
 	
-	static void PrintBooksByName(Scanner sc, List<Book> Library) 
+	static void PrintBooksByName(List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, o které chcete zjistit informace:");
-		sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		String Title = sc.nextLine();
 			
 		Book Selected = null;
@@ -332,10 +332,10 @@ public class Functions
 		}
 	}
 	
-	static void PrintBooksByAuthor (Scanner sc, List<Book> Library)
+	static void PrintBooksByAuthor (List<Book> Library)
 	{
 		System.out.println("Zadejte jméno autora, o kterém chcete zjistit jeho vydané knihy:");
-		sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		String Author = sc.nextLine();
 		
 		Collections.sort(Library, Comparator.comparingInt(Book::getReleaseYear));
@@ -370,8 +370,9 @@ public class Functions
 		}
 	}
 	
-	static void PrintBooksByGenre(Scanner sc, List<Book> Library)
+	static void PrintBooksByGenre(List<Book> Library)
 	{
+		Scanner sc = new Scanner(System.in);
 		boolean BookOfGenre = false;
 		Novel.Genres Genre = null;
 		boolean validChoice = false;
@@ -458,10 +459,10 @@ public class Functions
 		}
 	}
 	
-	static void SaveBookInFile(Scanner sc, List<Book> Library) 
+	static void SaveBookInFile(List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, o kterou chcete uložit do souboru:");
-		sc = new Scanner(System.in); 
+		Scanner sc = new Scanner(System.in); 
 		boolean BookFounded = false;
 		String Title = sc.nextLine();
 		
@@ -500,10 +501,10 @@ public class Functions
 		}
 	}
 	
-	static void LoadBookFromFile(Scanner sc, List<Book> Library) 
+	static void LoadBookFromFile(List<Book> Library) 
 	{
 		System.out.println("Zadejte název knihy, o které chcete načíst informace ze souboru:");
-		sc = new Scanner(System.in); 
+		Scanner sc = new Scanner(System.in); 
 		String Filename = (sc.nextLine() + ".txt");
 		BufferedReader Reader = null;
 		try
