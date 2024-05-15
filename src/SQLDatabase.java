@@ -73,13 +73,13 @@ public class SQLDatabase {
 					pstmt.setInt(3, Book.getReleaseYear());
 				if (Book instanceof Novel) {
 					pstmt.setString(4, "Novel");
-					pstmt.setString(5, Novel.getGenre().toString());
+					pstmt.setString(5, ((Novel) Book).getGenre().toString());
 					pstmt.setNull(6, Types.INTEGER);
 				}
 				else {
 					pstmt.setString(4, "TextBook");
 					pstmt.setString(5, null);
-					pstmt.setInt(6, TextBook.getGrade());
+					pstmt.setInt(6, ((TextBook) Book).getGrade());
 				}
 				pstmt.setBoolean(7, Book.isAvailability());
 				pstmt.executeUpdate();

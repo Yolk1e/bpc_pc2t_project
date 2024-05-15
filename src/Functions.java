@@ -56,7 +56,7 @@ public class Functions
 			System.out.println("║ 4 .. Venkovský                         ║");
 			System.out.println("║ 5 .. Hororový                          ║");
 			System.out.println("╚════════════════════════════════════════╝");
-			switch(NumbersN(sc)) {
+			switch(sc.nextInt()) {
 	            case 1:
 	                Genre = Novel.Genres.Detektivní;
 	                validChoice = true;
@@ -289,11 +289,11 @@ public class Functions
 			System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
 			if (Book instanceof Novel) 
 			{
-				System.out.print(", Žánr: " + Novel.getGenre());
+				System.out.print(", Žánr: " + ((Novel) Book).getGenre());
 			}
 			else if (Book instanceof TextBook)
 			{
-				System.out.print(", Ročník: " + TextBook.getGrade());
+				System.out.print(", Ročník: " + ((TextBook) Book).getGrade());
 			}
 			System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
 		}
@@ -314,11 +314,11 @@ public class Functions
 				System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
 				if (Book instanceof Novel) 
 				{
-					System.out.print(", Žánr: " + Novel.getGenre());
+					System.out.print(", Žánr: " + ((Novel) Book).getGenre());
 				}
 				else if (Book instanceof TextBook)
 				{
-					System.out.print(", Ročník: " + TextBook.getGrade());
+					System.out.print(", Ročník: " + ((TextBook) Book).getGrade());
 				}
 				System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
 				break;
@@ -351,11 +351,11 @@ public class Functions
 					System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
 					if (Book instanceof Novel) 
 					{
-						System.out.print(", Žánr: " + Novel.getGenre());
+						System.out.print(", Žánr: " + ((Novel) Book).getGenre());
 					}
 					else if (Book instanceof TextBook)
 					{
-						System.out.print(", Ročník: " + TextBook.getGrade());
+						System.out.print(", Ročník: " + ((TextBook) Book).getGrade());
 					}
 					System.out.print(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
 					break;
@@ -418,7 +418,7 @@ public class Functions
 	    {
 	    	if (Book instanceof Novel) 
 	    	{
-	    		if (Novel.getGenre().equals(Genre)) 
+	    		if (((Novel) Book).getGenre().equals(Genre)) 
 	    		{
 	    			BookOfGenre = true;
 	    			System.out.print(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
@@ -476,11 +476,11 @@ public class Functions
 					Writer.write(Book.getTitle() + " od " + String.join(", ", Book.getAuthor()));
 					if (Book instanceof Novel) 
 					{
-						Writer.write(", Žánr: " + Novel.getGenre());
+						Writer.write(", Žánr: " + ((Novel) Book).getGenre());
 					}
 					else if (Book instanceof TextBook)
 					{
-						Writer.write(", Ročník: " + TextBook.getGrade());
+						Writer.write(", Ročník: " + ((TextBook) Book).getGrade());
 					}
 					Writer.write(", Rok vydání: " + Book.getReleaseYear() + ", Dostupnost: " + (Book.isAvailability() ? "K dispozici" : "Vypůjčena") + "\n");
 					System.out.println("Kniha " + Title + " byla uložena do souboru " + Title + ".txt.");

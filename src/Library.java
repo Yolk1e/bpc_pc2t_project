@@ -82,6 +82,7 @@ public class Library
 					break;
 				
 				case 3:
+					sqlDatabase.DeleteAllData();
 					Functions.DeleteBook(Knihy);
 					break;
 				
